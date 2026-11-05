@@ -6,8 +6,13 @@ import {
   Mail,
   Maximize2,
   Menu,
+  PenTool,
+  Sparkles,
+  Target,
+  Wrench,
   X,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 const NAV_LINKS = [
   { label: "Sobre", href: "#sobre" },
@@ -208,9 +213,10 @@ const CASES: Case[] = [
   },
 ];
 
-const SKILLS = [
+const SKILLS: { category: string; icon: LucideIcon; items: string[] }[] = [
   {
     category: "UX/UI",
+    icon: PenTool,
     items: [
       "Discovery",
       "Entrevistas com Usuários",
@@ -222,6 +228,7 @@ const SKILLS = [
   },
   {
     category: "Produto",
+    icon: Target,
     items: [
       "UX Strategy",
       "Product Thinking",
@@ -232,10 +239,12 @@ const SKILLS = [
   },
   {
     category: "Ferramentas",
+    icon: Wrench,
     items: ["Figma", "FigJam", "Miro", "Maze", "Hotjar", "Google Analytics"],
   },
   {
     category: "IA",
+    icon: Sparkles,
     items: [
       "AI-assisted workflow",
       "Claude",
@@ -323,10 +332,45 @@ function navLinkClass(isActive: boolean, size: "sm" | "md" = "sm") {
       : "text-base px-3 py-2 rounded-md transition-all duration-200 text-left w-full";
 
   if (isActive) {
-    return `${base} text-[#2a2926] font-medium bg-[#EFEDE7] shadow-[0_2px_10px_rgba(17,17,16,0.14)] hover:shadow-[0_4px_14px_rgba(17,17,16,0.2)] hover:text-[#111110]`;
+    return `${base} text-foreground font-medium bg-white/10`;
   }
 
-  return `${base} text-muted-foreground hover:text-[#3d3c38] hover:shadow-[0_1px_6px_rgba(17,17,16,0.1)]`;
+  return `${base} text-muted-foreground hover:text-foreground hover:bg-white/5`;
+}
+
+function Eyebrow({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-block text-sm uppercase tracking-wide text-accent border border-accent-border rounded-sm px-3 py-1 mb-5">
+      {children}
+    </span>
+  );
+}
+
+function SectionHeader({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div className="mb-14">
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2
+        className="text-[clamp(2rem,4.5vw,3.2rem)] font-medium leading-[1.1] tracking-tight text-foreground mb-5"
+        style={{ fontFamily: "'Manrope', sans-serif" }}
+      >
+        {title}
+      </h2>
+      {children && (
+        <p className="text-lg text-muted-foreground leading-relaxed max-w-4xl">
+          {children}
+        </p>
+      )}
+    </div>
+  );
 }
 
 function Nav() {
@@ -356,10 +400,10 @@ function Nav() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#F8F7F3]/95 backdrop-blur-sm border-b border-black/8"
+          ? "bg-[#2B2E31]/95 backdrop-blur-sm border-b border-white/8"
           : "bg-transparent"
       }`}
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
       <div className="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
         <button
@@ -398,7 +442,7 @@ function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-[#F8F7F3] border-t border-black/8 px-6 py-6 flex flex-col gap-2">
+        <div className="md:hidden bg-[#2B2E31] border-t border-white/8 px-6 py-6 flex flex-col gap-2">
           {NAV_LINKS.map((l) => {
             const isActive = active === l.href.replace("#", "");
             return (
@@ -423,36 +467,35 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="px-6 md:px-10 max-w-6xl mx-auto border-b border-black/10"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      className="px-6 md:px-10 max-w-6xl mx-auto border-b border-white/10"
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
       <div className="pt-24 md:pt-28 pb-14">
-        <div className="flex flex-wrap gap-2 mb-8">
-          {TAGS.map((t) => (
-            <span
-              key={t}
-              className="text-xs px-3 py-1 border border-black/15 rounded-full text-muted-foreground tracking-wide"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
+        <Eyebrow>Portfolio · Product Design</Eyebrow>
 
         <h1
-          className="text-[clamp(2.2rem,5.5vw,4.2rem)] leading-[1.1] font-light tracking-tight text-foreground mb-5 max-w-4xl"
-          style={{
-            fontFamily: "'Fraunces', Georgia, serif",
-            fontVariationSettings: "'opsz' 72",
-          }}
+          className="text-[clamp(2.2rem,5.5vw,4.2rem)] leading-[1.1] font-medium tracking-tight text-foreground mb-5 max-w-4xl"
+          style={{ fontFamily: "'Manrope', sans-serif" }}
         >
           Product Designer focada em produtos SaaS, B2B e jornadas financeiras
           complexas.
         </h1>
 
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-10 font-light">
+        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-8">
           10+ anos criando experiências que equilibram negócio, métricas e
           usabilidade.
         </p>
+
+        <div className="flex flex-wrap gap-2 mb-10">
+          {TAGS.map((t) => (
+            <span
+              key={t}
+              className="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-muted-foreground tracking-wide"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
 
         <div className="flex flex-wrap gap-4">
           <button
@@ -466,7 +509,7 @@ function Hero() {
           <button
             type="button"
             onClick={() => scrollTo("#contato")}
-            className="inline-flex items-center gap-2 px-6 py-3 border border-black/20 text-foreground text-sm font-medium rounded-sm hover:border-black/40 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-foreground text-sm font-medium rounded-sm hover:border-white/40 transition-colors"
           >
             Contato
           </button>
@@ -480,8 +523,8 @@ function About() {
   return (
     <section
       id="sobre"
-      className="pt-20 pb-12 px-6 md:px-10 max-w-6xl mx-auto border-b border-black/10"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      className="pt-20 pb-12 px-6 md:px-10 max-w-6xl mx-auto border-b border-white/10"
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
       <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center md:items-start">
         <div className="relative shrink-0 flex items-center justify-center">
@@ -498,15 +541,16 @@ function About() {
         </div>
 
         <div className="flex-1">
+          <Eyebrow>Sobre</Eyebrow>
           <p className="text-base text-muted-foreground mb-1">Olá, sou</p>
           <h2
-            className="text-[clamp(2.2rem,5vw,3.8rem)] font-light leading-[1.05] text-foreground tracking-tight mb-3"
-            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            className="text-[clamp(2.2rem,5vw,3.8rem)] font-medium leading-[1.05] text-foreground tracking-tight mb-3"
+            style={{ fontFamily: "'Manrope', sans-serif" }}
           >
             Aline Yokota
           </h2>
 
-          <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 border border-black/15 rounded-full text-muted-foreground mb-6">
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 border border-white/15 rounded-full text-muted-foreground mb-6">
             São Paulo, Brasil
           </span>
 
@@ -530,7 +574,7 @@ function About() {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-4 items-center border-t border-black/10 pt-6">
+          <div className="flex flex-wrap gap-4 items-center border-t border-white/10 pt-6">
             <a
               href="mailto:aline.ykt@gmail.com"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -601,7 +645,7 @@ function ImageModal({
         />
         <p
           className="text-center text-white/50 text-xs mt-3"
-          style={{ fontFamily: "'DM Sans', sans-serif" }}
+          style={{ fontFamily: "'Inter', sans-serif" }}
         >
           {label}
         </p>
@@ -617,7 +661,7 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
 
   return (
     <article
-      className={`pb-10 ${index > 0 ? "border-t border-black/10 pt-10" : "pt-2"}`}
+      className={`pb-10 ${index > 0 ? "border-t border-white/10 pt-10" : "pt-2"}`}
     >
       <ImageModal
         open={modalOpen}
@@ -635,11 +679,11 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
           <img
             src={c.image}
             alt={c.imageAlt}
-            className="w-full h-full object-contain bg-[#EFEDE7] transition-transform duration-700 group-hover:scale-[1.02]"
+            className="w-full h-full object-contain bg-[#3A3E42] transition-transform duration-700 group-hover:scale-[1.02]"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-200" />
-          <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-1.5 shadow-sm opacity-70 group-hover:opacity-100 transition-opacity">
+          <div className="absolute bottom-3 right-3 bg-black/50 backdrop-blur-sm rounded-full p-1.5 shadow-sm opacity-70 group-hover:opacity-100 transition-opacity">
             <Maximize2 size={14} className="text-foreground" />
           </div>
         </button>
@@ -650,8 +694,8 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
               {String(index + 1).padStart(2, "0")} — {c.company}
             </span>
             <h3
-              className="text-2xl font-light text-foreground mb-1"
-              style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+              className="text-2xl font-medium text-foreground mb-1"
+              style={{ fontFamily: "'Manrope', sans-serif" }}
             >
               {c.title}
             </h3>
@@ -678,8 +722,8 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
             {c.metrics.map((m) => (
               <div key={m.label} className="bg-secondary rounded-sm px-4 py-3">
                 <div
-                  className="text-xl font-light text-foreground mb-0.5"
-                  style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+                  className="text-xl font-medium text-foreground mb-0.5"
+                  style={{ fontFamily: "'Manrope', sans-serif" }}
                 >
                   {m.value}
                 </div>
@@ -728,7 +772,7 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
                   {c.responsibilities.map((r) => (
                     <li
                       key={r}
-                      className="text-xs px-2.5 py-1 border border-black/12 rounded-sm text-foreground list-none"
+                      className="text-xs px-2.5 py-1 border border-white/12 rounded-sm text-foreground list-none"
                     >
                       {r}
                     </li>
@@ -758,20 +802,16 @@ function Cases() {
   return (
     <section
       id="cases"
-      className="pt-12 pb-12 px-6 md:px-10 max-w-6xl mx-auto"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      className="pt-20 pb-12 px-6 md:px-10 max-w-6xl mx-auto"
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
-      <div className="grid md:grid-cols-[1fr_2fr] gap-10 mb-8">
-        <span className="text-xs font-medium tracking-widest uppercase text-muted-foreground">
-          Cases
-        </span>
-        <h2
-          className="text-3xl font-light text-foreground text-left"
-          style={{ fontFamily: "'Fraunces', Georgia, serif" }}
-        >
-          Projetos selecionados
-        </h2>
-      </div>
+      <SectionHeader eyebrow="Cases" title="Projetos selecionados">
+        Discovery, pesquisa e estratégia de UX aplicados a produtos{" "}
+        <strong className="font-semibold text-foreground">
+          SaaS, fintech, saúde e marketplaces
+        </strong>
+        , com foco em resultados mensuráveis.
+      </SectionHeader>
       <div className="space-y-4">
         {CASES.map((c, i) => (
           <CaseCard key={c.id} c={c} index={i} />
@@ -782,32 +822,50 @@ function Cases() {
 }
 
 function Skills() {
+  // Each column sits a bit higher than the previous one, like a rising timeline.
+  const offsets = ["lg:mt-24", "lg:mt-16", "lg:mt-8", "lg:mt-0"];
   return (
     <section
       id="habilidades"
-      className="pt-12 pb-12 px-6 md:px-10 max-w-6xl mx-auto border-t border-black/10"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      className="pt-20 pb-20 px-6 md:px-10 max-w-6xl mx-auto border-t border-white/10"
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
-      <div className="grid md:grid-cols-[1fr_2fr] gap-16">
-        <span className="text-xs font-medium tracking-widest uppercase text-muted-foreground">
-          Habilidades
-        </span>
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {SKILLS.map((s) => (
-            <div key={s.category}>
-              <h3 className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-4">
-                {s.category}
-              </h3>
-              <ul className="space-y-2">
-                {s.items.map((item) => (
-                  <li key={item} className="text-sm text-foreground">
-                    {item}
-                  </li>
-                ))}
-              </ul>
+      <SectionHeader eyebrow="Habilidades" title="Do discovery ao protótipo">
+        Um processo que combina{" "}
+        <strong className="font-semibold text-foreground">
+          pesquisa, estratégia de produto e IA
+        </strong>
+        , garantindo clareza, consistência visual e velocidade de entrega.
+      </SectionHeader>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        {SKILLS.map((s, i) => {
+          const Icon = s.icon;
+          return (
+            <div key={s.category} className={offsets[i]}>
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center shrink-0 relative z-10">
+                  <Icon size={24} strokeWidth={1.5} className="text-foreground" />
+                </div>
+                <div className="h-5 flex-1 bg-muted rounded-r-sm -ml-2" />
+              </div>
+              <div className="pl-5">
+                <h3
+                  className="text-2xl font-medium text-foreground mb-3"
+                  style={{ fontFamily: "'Manrope', sans-serif" }}
+                >
+                  {s.category}
+                </h3>
+                <ul className="space-y-1.5">
+                  {s.items.map((item) => (
+                    <li key={item} className="text-base text-muted-foreground leading-relaxed">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );
@@ -817,19 +875,17 @@ function Contact() {
   return (
     <section
       id="contato"
-      className="pt-12 pb-12 px-6 md:px-10 max-w-6xl mx-auto border-t border-black/10"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      className="pt-20 pb-20 px-6 md:px-10 max-w-6xl mx-auto border-t border-white/10"
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
-      <div className="grid md:grid-cols-[1fr_2fr] gap-16">
-        <span className="text-xs font-medium tracking-widest uppercase text-muted-foreground">
-          Contato
-        </span>
+      <div>
         <div>
+          <Eyebrow>Contato</Eyebrow>
           <h2
-            className="text-[clamp(1.8rem,3.5vw,3rem)] font-light leading-[1.1] text-foreground mb-6"
-            style={{ fontFamily: "'Fraunces', Georgia, serif" }}
+            className="text-[clamp(2rem,4.5vw,3.2rem)] font-medium leading-[1.1] tracking-tight text-foreground mb-8"
+            style={{ fontFamily: "'Manrope', sans-serif" }}
           >
-            Meus contatos:
+            Vamos conversar?
           </h2>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
@@ -843,7 +899,7 @@ function Contact() {
               href="https://www.linkedin.com/in/aline-yy/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 border border-black/20 text-foreground text-sm font-medium rounded-sm hover:border-black/40 transition-colors"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-foreground text-sm font-medium rounded-sm hover:border-white/40 transition-colors"
             >
               <Linkedin size={15} />
               linkedin.com/in/aline-yy
@@ -859,8 +915,8 @@ function Contact() {
 function Footer() {
   return (
     <footer
-      className="border-t border-black/10 px-6 md:px-10 max-w-6xl mx-auto py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      className="border-t border-white/10 px-6 md:px-10 max-w-6xl mx-auto py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
+      style={{ fontFamily: "'Inter', sans-serif" }}
     >
       <span className="text-xs text-muted-foreground">
         © 2026 Aline Yokota · Product Designer
@@ -878,7 +934,7 @@ export default function App() {
         section[id] { scroll-margin-top: 5.5rem; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: rgba(17,17,16,0.15); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); border-radius: 3px; }
       `}</style>
       <Nav />
       <main>

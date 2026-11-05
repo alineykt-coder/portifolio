@@ -2,17 +2,19 @@
 
 :root {
   --font-size: 16px;
-  --background: #f8f7f3;
-  --foreground: #111110;
-  --card: #ffffff;
-  --card-foreground: #111110;
-  --primary: #111110;
-  --primary-foreground: #f8f7f3;
-  --secondary: #efede7;
-  --secondary-foreground: #111110;
-  --muted: #efede7;
-  --muted-foreground: #6b6860;
-  --border: rgba(17, 17, 16, 0.1);
+  --background: #2b2e31;
+  --foreground: #f4f4f5;
+  --card: #34383c;
+  --card-foreground: #f4f4f5;
+  --primary: #f4f4f5;
+  --primary-foreground: #2b2e31;
+  --secondary: #3a3e42;
+  --secondary-foreground: #f4f4f5;
+  --muted: #464a4e;
+  --muted-foreground: #c4c7cc;
+  --border: rgba(255, 255, 255, 0.12);
+  --accent: #a99bff;
+  --accent-border: #8b7cf6;
   --radius: 0.625rem;
 }
 
@@ -28,6 +30,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-border: var(--accent-border);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -40,6 +44,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
   }
 
   html {
