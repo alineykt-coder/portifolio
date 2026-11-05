@@ -43,7 +43,7 @@ type Case = {
   challenge: string;
   responsibilities: string[];
   process: string;
-  metrics: { value: string; label: string }[];
+  metrics: { value: string; label: string; detail?: string }[];
   takeaway: string;
 };
 
@@ -53,39 +53,50 @@ const CASES: Case[] = [
     company: "Qive",
     title: "Plataforma Fiscal — Reforma Tributária",
     subtitle:
-      "Discovery, research e redesign de experiência para conformidade tributária",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=900&fit=crop&auto=format",
+      "Discovery, indicadores e dashboard para o contexto da Reforma Tributária",
+    image: "/cases/qive.png",
     imageAlt: "Dashboard de plataforma fiscal digital",
     tags: ["SaaS", "Gov Tech", "Discovery", "UX Strategy"],
     challenge:
-      "A reforma tributária brasileira (EC 132/2023) exigiu que plataformas fiscais repensassem fluxos complexos de apuração, emissão e conformidade — impactando diretamente a experiência de contadores, gestores financeiros e PMEs.",
+      "A Reforma Tributária criou um cenário inédito — sem benchmarks consolidados e com incerteza entre especialistas sobre quais indicadores apoiariam decisões estratégicas. O desafio: transformar dados fiscais complexos em uma experiência clara e acionável.",
     responsibilities: [
-      "Discovery e mapeamento de jornada",
-      "Entrevistas com usuários",
-      "Benchmarking regulatório",
-      "Prototipação no Figma",
-      "Workshops com stakeholders",
-      "Testes de usabilidade",
-      "Design system e UI",
+      "Estruturação da informação e indicadores",
+      "Facilitação com financeiro, negócio e dados",
+      "UX Strategy e definição da experiência",
+      "Prototipação navegável no Figma",
+      "IA para acelerar discovery e interface",
+      "Design visual e arquitetura do dashboard",
     ],
     process:
-      "Utilizei prompts com conteúdos da Reforma Tributária e personas sintéticas no Gemini para acelerar a ideação. O resultado foi adaptado no Figma Make com base no Design System da empresa e refinado com os times de negócios e técnico. Um protótipo navegável foi entregue via Cursor + Vercel em 5 dias — a tempo para ser apresentado no Qive Conecta.",
+      "Com especialistas de financeiro, negócio e dados, identifiquei os indicadores mais relevantes da Reforma Tributária. Usei IA para acelerar cenários, organização da informação e fluxos iniciais — transformando conhecimento técnico complexo em dashboard navegável pronto para demo em cinco dias.",
     metrics: [
-      { value: "Inédito", label: "solução sem referências no mercado fiscal/financeiro" },
-      { value: "+20", label: "empresas enterprise interessadas" },
-      { value: "↑ MRR", label: "potencial impacto direto na meta de receita" },
+      {
+        value: "+40",
+        label: "Clientes SMBs e MIDs",
+        detail: "Contratação do módulo adicional da Reforma em 3 meses.",
+      },
+      {
+        value: "30%",
+        label: "Aumento de MRR",
+        detail:
+          "Incremento projetado de 20 a 30% no MRR em contas de expansão e novos clientes.",
+      },
+      {
+        value: "+26%",
+        label: "Leads",
+        detail:
+          "Aumento de leads em Q3, apoiando o topo do funil para conversão de vendas.",
+      },
     ],
     takeaway:
-      "A proposta foi destaque no Qive Conecta — evento anual da empresa para apresentação de novidades a clientes e leads — abrindo oportunidades de upsell em grandes contas enterprise.",
+      "Sem referências competitivas, a solução comunicou com clareza os impactos da reforma e servirá de apoio para o planejamento da transição tributária dos clientes.",
   },
   {
     id: 2,
     company: "iClinic RX",
     title: "Plataforma de Prescrição Digital",
     subtitle: "Discovery, segmentação e experiência escalável em saúde",
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=700&fit=crop&auto=format",
+    image: "/cases/iclinic.png",
     imageAlt: "Interface de software médico em tablet",
     tags: ["Saúde", "Discovery", "UX Design"],
     challenge:
@@ -114,8 +125,7 @@ const CASES: Case[] = [
     company: "Serasa",
     title: "Serasa Premium — Proteção de Score",
     subtitle: "Discovery e estratégia de UX para retenção de usuários",
-    image:
-      "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=1200&h=700&fit=crop&auto=format",
+    image: "/cases/serasa.png",
     imageAlt: "Dashboard financeiro com gráficos de score de crédito",
     tags: ["Fintech", "Estratégia", "Retenção"],
     challenge:
@@ -140,15 +150,14 @@ const CASES: Case[] = [
   {
     id: 4,
     company: "OLX",
-    title: "OLX Pagamentos — Redesign PIX",
+    title: "OLX Pagamentos — Adoção e Estratégia de PIX",
     subtitle:
-      "Pesquisa, mapeamento comportamental e redesign da experiência de pagamento",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=700&fit=crop&auto=format",
+      "Pesquisa, mapeamento comportamental e estratégia de pagamento",
+    image: "/cases/olx-pix.png",
     imageAlt: "Experiência de checkout mobile com PIX",
     tags: ["Marketplace", "Pagamentos", "Pesquisa"],
     challenge:
-      "O time de pagamentos precisava entender o comportamento dos usuários em relação à adoção do PIX e otimizar a experiência de checkout para diferentes perfis de vendedores.",
+      "Em 2021, a OLX avaliava a adoção do PIX no checkout, em um mercado ainda sem padrões consolidados e poucas referências entre marketplaces. O desafio era entender o comportamento dos usuários e criar uma experiência confiável para compradores e vendedores.",
     responsibilities: [
       "Consolidação de pesquisas",
       "Mapeamento de personas",
@@ -159,22 +168,21 @@ const CASES: Case[] = [
       "Testes de usabilidade",
     ],
     process:
-      "Organizei dados históricos de pesquisa e identifiquei lacunas comportamentais em pagamentos digitais. Mapeei um segmento crescente de vendedores semiprofissionais e redesenhei fluxos de pagamento para suportar confiança e transações mais rápidas.",
+      "Consolidei pesquisas históricas e analisei comportamentos relacionados ao PIX. Identifiquei vendedores buscando comprar planos e destaques em seus anúncios e redesenhei o checkout com foco em confiança, clareza e adoção do novo meio de pagamento. O projeto ajudou a orientar a estratégia de implementação em um cenário com poucas referências de mercado.",
     metrics: [
-      { value: "↑", label: "Compreensão do PIX" },
-      { value: "Nova", label: "Persona de vendedor identificada" },
-      { value: "↑", label: "Priorização do roadmap" },
+      { value: "40%", label: "dos pagamentos em algumas modalidades após 1 ano" },
+      { value: "2º meio", label: "de pagamento mais utilizado no checkout" },
+      { value: "Pioneirismo", label: "adoção em fase inicial do PIX no mercado" },
     ],
     takeaway:
-      "O comportamento de pagamento varia significativamente dependendo da intenção, frequência e percepção de confiança do usuário.",
+      "Em aproximadamente um ano, o PIX tornou-se o segundo meio de pagamento mais utilizado no checkout da OLX, representando cerca de 40% das transações em algumas modalidades.",
   },
   {
     id: 5,
     company: "OLX",
     title: "OLX Financiamentos — Marketplace",
     subtitle: "Recuperação de conversão por pesquisa e design colaborativo",
-    image:
-      "https://images.unsplash.com/photo-1560472355-536de3962603?w=1200&h=700&fit=crop&auto=format",
+    image: "/cases/olx-financiamentos.png",
     imageAlt: "Simulador de financiamento de veículos digital",
     tags: ["Marketplace", "Conversão", "Pesquisa de Campo"],
     challenge:
@@ -202,13 +210,14 @@ const CASES: Case[] = [
 
 const SKILLS = [
   {
-    category: "Pesquisa",
+    category: "UX/UI",
     items: [
       "Discovery",
       "Entrevistas com Usuários",
-      "Testes de Usabilidade",
       "Pesquisa Quantitativa",
       "Service Design",
+      "Design Systems",
+      "Interaction Design",
     ],
   },
   {
@@ -222,51 +231,120 @@ const SKILLS = [
     ],
   },
   {
-    category: "Design",
-    items: [
-      "UX/UI Design",
-      "Design Systems",
-      "Wireframing",
-      "Prototipação",
-      "Interaction Design",
-    ],
-  },
-  {
     category: "Ferramentas",
     items: ["Figma", "FigJam", "Miro", "Maze", "Hotjar", "Google Analytics"],
   },
+  {
+    category: "IA",
+    items: [
+      "AI-assisted workflow",
+      "Claude",
+      "Cursor",
+      "v0",
+      "Figma AI",
+      "Prototipação rápida",
+      "Geração de specs",
+      "Personas sintéticas",
+    ],
+  },
 ];
 
-function useScrollSpy(ids: string[]) {
-  const [active, setActive] = useState("");
+const SECTION_IDS = ["sobre", "cases", "habilidades", "contato"] as const;
+
+function useScrollSpy(ids: readonly string[]) {
+  const [active, setActive] = useState(ids[0]);
+
   useEffect(() => {
-    const handler = () => {
-      const scrollY = window.scrollY + 100;
-      for (let i = ids.length - 1; i >= 0; i--) {
-        const el = document.getElementById(ids[i]);
-        if (el && el.offsetTop <= scrollY) {
-          setActive(ids[i]);
-          return;
+    const elements = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    if (!elements.length) return;
+
+    const headerOffset = 96;
+
+    const updateFromScroll = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 80;
+
+      if (nearBottom) {
+        setActive(ids[ids.length - 1]);
+        return;
+      }
+
+      let current = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const top = el.getBoundingClientRect().top + window.scrollY;
+        if (window.scrollY + headerOffset >= top - 1) {
+          current = id;
         }
       }
+      setActive(current);
     };
-    window.addEventListener("scroll", handler, { passive: true });
-    handler();
-    return () => window.removeEventListener("scroll", handler);
+
+    const observer = new IntersectionObserver(
+      () => updateFromScroll(),
+      {
+        rootMargin: `-${headerOffset}px 0px -45% 0px`,
+        threshold: [0, 0.05, 0.1, 0.25, 0.5],
+      },
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    window.addEventListener("scroll", updateFromScroll, { passive: true });
+    window.addEventListener("resize", updateFromScroll, { passive: true });
+    updateFromScroll();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", updateFromScroll);
+      window.removeEventListener("resize", updateFromScroll);
+    };
   }, [ids]);
+
   return active;
 }
 
 function scrollTo(href: string) {
   const id = href.replace("#", "");
   const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: "smooth" });
+  if (!el) return;
+  const top = el.getBoundingClientRect().top + window.scrollY - 88;
+  window.scrollTo({ top, behavior: "smooth" });
+}
+
+function navLinkClass(isActive: boolean, size: "sm" | "md" = "sm") {
+  const base =
+    size === "sm"
+      ? "text-sm px-3 py-1.5 rounded-md transition-all duration-200"
+      : "text-base px-3 py-2 rounded-md transition-all duration-200 text-left w-full";
+
+  if (isActive) {
+    return `${base} text-[#2a2926] font-medium bg-[#EFEDE7] shadow-[0_2px_10px_rgba(17,17,16,0.14)] hover:shadow-[0_4px_14px_rgba(17,17,16,0.2)] hover:text-[#111110]`;
+  }
+
+  return `${base} text-muted-foreground hover:text-[#3d3c38] hover:shadow-[0_1px_6px_rgba(17,17,16,0.1)]`;
 }
 
 function Nav() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const active = useScrollSpy(["sobre", "cases", "habilidades", "contato"]);
+  const scrollActive = useScrollSpy(SECTION_IDS);
+  const [active, setActive] = useState<string>(SECTION_IDS[0]);
+
+  useEffect(() => {
+    setActive(scrollActive);
+  }, [scrollActive]);
+
+  const handleNavClick = (href: string, closeMenu = false) => {
+    const id = href.replace("#", "");
+    setActive(id);
+    scrollTo(href);
+    if (closeMenu) setOpen(false);
+  };
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 24);
@@ -292,28 +370,21 @@ function Nav() {
           Aline Yokota
         </button>
 
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((l) => (
-            <button
-              key={l.href}
-              type="button"
-              onClick={() => scrollTo(l.href)}
-              className={`text-sm transition-colors ${
-                active === l.href.replace("#", "")
-                  ? "text-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
-            >
-              {l.label}
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => scrollTo("#contato")}
-            className="text-sm px-4 py-2 bg-foreground text-primary-foreground rounded-sm hover:opacity-80 transition-opacity"
-          >
-            Contato
-          </button>
+        <nav className="hidden md:flex items-center gap-2">
+          {NAV_LINKS.map((l) => {
+            const isActive = active === l.href.replace("#", "");
+            return (
+              <button
+                key={l.href}
+                type="button"
+                onClick={() => handleNavClick(l.href)}
+                className={navLinkClass(isActive)}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {l.label}
+              </button>
+            );
+          })}
         </nav>
 
         <button
@@ -327,20 +398,21 @@ function Nav() {
       </div>
 
       {open && (
-        <div className="md:hidden bg-[#F8F7F3] border-t border-black/8 px-6 py-6 flex flex-col gap-5">
-          {NAV_LINKS.map((l) => (
-            <button
-              key={l.href}
-              type="button"
-              onClick={() => {
-                scrollTo(l.href);
-                setOpen(false);
-              }}
-              className="text-left text-base text-foreground"
-            >
-              {l.label}
-            </button>
-          ))}
+        <div className="md:hidden bg-[#F8F7F3] border-t border-black/8 px-6 py-6 flex flex-col gap-2">
+          {NAV_LINKS.map((l) => {
+            const isActive = active === l.href.replace("#", "");
+            return (
+              <button
+                key={l.href}
+                type="button"
+                onClick={() => handleNavClick(l.href, true)}
+                className={navLinkClass(isActive, "md")}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {l.label}
+              </button>
+            );
+          })}
         </div>
       )}
     </header>
@@ -351,11 +423,11 @@ function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-center pt-16 px-6 md:px-10 max-w-6xl mx-auto"
+      className="px-6 md:px-10 max-w-6xl mx-auto border-b border-black/10"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
-      <div className="pt-20 pb-16">
-        <div className="flex flex-wrap gap-2 mb-12">
+      <div className="pt-24 md:pt-28 pb-14">
+        <div className="flex flex-wrap gap-2 mb-8">
           {TAGS.map((t) => (
             <span
               key={t}
@@ -367,20 +439,19 @@ function Hero() {
         </div>
 
         <h1
-          className="text-[clamp(2.6rem,6vw,5rem)] leading-[1.08] font-light tracking-tight text-foreground mb-8 max-w-4xl"
+          className="text-[clamp(2.2rem,5.5vw,4.2rem)] leading-[1.1] font-light tracking-tight text-foreground mb-5 max-w-4xl"
           style={{
             fontFamily: "'Fraunces', Georgia, serif",
             fontVariationSettings: "'opsz' 72",
           }}
         >
-          Projetando produtos digitais que conectam necessidades dos usuários ao
-          impacto no negócio.
+          Product Designer focada em produtos SaaS, B2B e jornadas financeiras
+          complexas.
         </h1>
 
-        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-12 font-light">
-          Product Designer com experiência em healthtech, fintech e marketplaces,
-          liderando discovery, pesquisa, estratégia de UX e experiências de
-          produto escaláveis.
+        <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-10 font-light">
+          10+ anos criando experiências que equilibram negócio, métricas e
+          usabilidade.
         </p>
 
         <div className="flex flex-wrap gap-4">
@@ -409,7 +480,7 @@ function About() {
   return (
     <section
       id="sobre"
-      className="py-24 px-6 md:px-10 max-w-6xl mx-auto"
+      className="pt-20 pb-12 px-6 md:px-10 max-w-6xl mx-auto border-b border-black/10"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center md:items-start">
@@ -418,18 +489,12 @@ function About() {
             className="absolute rounded-full"
             style={{ width: 200, height: 200, background: "var(--secondary)", zIndex: 0 }}
           />
-          <div
-            className="relative z-10 flex items-center justify-center rounded-full bg-secondary text-foreground font-light"
-            style={{
-              width: 188,
-              height: 188,
-              fontFamily: "'Fraunces', Georgia, serif",
-              fontSize: "3rem",
-            }}
-            aria-hidden
-          >
-            AY
-          </div>
+          <img
+            src="/avatar.png"
+            alt="Aline Yokota"
+            className="relative z-10 object-cover object-top rounded-full"
+            style={{ width: 188, height: 188, display: "block" }}
+          />
         </div>
 
         <div className="flex-1">
@@ -474,13 +539,13 @@ function About() {
               aline.ykt@gmail.com
             </a>
             <a
-              href="https://linkedin.com/in/alineyokota"
+              href="https://www.linkedin.com/in/aline-yy/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <Linkedin size={14} />
-              linkedin.com/in/alineyokota
+              linkedin.com/in/aline-yy
             </a>
           </div>
         </div>
@@ -551,7 +616,9 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   return (
-    <article className="border-t border-black/10 pt-10 pb-10">
+    <article
+      className={`pb-10 ${index > 0 ? "border-t border-black/10 pt-10" : "pt-2"}`}
+    >
       <ImageModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
@@ -568,7 +635,7 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
           <img
             src={c.image}
             alt={c.imageAlt}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-contain bg-[#EFEDE7] transition-transform duration-700 group-hover:scale-[1.02]"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-200" />
@@ -607,7 +674,7 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
             {c.challenge}
           </p>
 
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 mb-6">
             {c.metrics.map((m) => (
               <div key={m.label} className="bg-secondary rounded-sm px-4 py-3">
                 <div
@@ -616,9 +683,18 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
                 >
                   {m.value}
                 </div>
-                <div className="text-xs text-muted-foreground leading-tight">
+                <div
+                  className={`text-xs leading-tight ${
+                    m.detail ? "font-medium text-foreground" : "text-muted-foreground"
+                  }`}
+                >
                   {m.label}
                 </div>
+                {m.detail && (
+                  <div className="text-xs text-muted-foreground leading-tight mt-1">
+                    {m.detail}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -682,15 +758,15 @@ function Cases() {
   return (
     <section
       id="cases"
-      className="py-28 px-6 md:px-10 max-w-6xl mx-auto"
+      className="pt-12 pb-12 px-6 md:px-10 max-w-6xl mx-auto"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
-      <div className="grid md:grid-cols-[1fr_2fr] gap-16 mb-16">
+      <div className="grid md:grid-cols-[1fr_2fr] gap-10 mb-8">
         <span className="text-xs font-medium tracking-widest uppercase text-muted-foreground">
           Cases
         </span>
         <h2
-          className="text-3xl font-light text-foreground"
+          className="text-3xl font-light text-foreground text-left"
           style={{ fontFamily: "'Fraunces', Georgia, serif" }}
         >
           Projetos selecionados
@@ -709,14 +785,14 @@ function Skills() {
   return (
     <section
       id="habilidades"
-      className="py-28 px-6 md:px-10 max-w-6xl mx-auto"
+      className="pt-12 pb-12 px-6 md:px-10 max-w-6xl mx-auto border-t border-black/10"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       <div className="grid md:grid-cols-[1fr_2fr] gap-16">
         <span className="text-xs font-medium tracking-widest uppercase text-muted-foreground">
           Habilidades
         </span>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {SKILLS.map((s) => (
             <div key={s.category}>
               <h3 className="text-xs font-medium tracking-widest uppercase text-muted-foreground mb-4">
@@ -741,7 +817,7 @@ function Contact() {
   return (
     <section
       id="contato"
-      className="py-28 px-6 md:px-10 max-w-6xl mx-auto border-t border-black/10"
+      className="pt-12 pb-12 px-6 md:px-10 max-w-6xl mx-auto border-t border-black/10"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
       <div className="grid md:grid-cols-[1fr_2fr] gap-16">
@@ -764,13 +840,13 @@ function Contact() {
               aline.ykt@gmail.com
             </a>
             <a
-              href="https://linkedin.com/in/alineyokota"
+              href="https://www.linkedin.com/in/aline-yy/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 border border-black/20 text-foreground text-sm font-medium rounded-sm hover:border-black/40 transition-colors"
             >
               <Linkedin size={15} />
-              linkedin.com/in/alineyokota
+              linkedin.com/in/aline-yy
               <ArrowUpRight size={13} />
             </a>
           </div>
@@ -799,6 +875,7 @@ export default function App() {
     <div className="bg-background min-h-screen" style={{ scrollBehavior: "smooth" }}>
       <style>{`
         html { scroll-behavior: smooth; }
+        section[id] { scroll-margin-top: 5.5rem; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: rgba(17,17,16,0.15); border-radius: 3px; }
