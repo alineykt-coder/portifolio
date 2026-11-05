@@ -746,7 +746,8 @@ function CaseCard({ c, index }: { c: Case; index: number }) {
           <button
             type="button"
             onClick={() => setExpanded(!expanded)}
-            className="inline-flex items-center gap-2 text-sm text-foreground font-medium hover:opacity-60 transition-opacity"
+            aria-expanded={expanded}
+            className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-accent border border-accent-border rounded-sm bg-accent/10 hover:bg-accent hover:text-primary-foreground transition-colors"
           >
             {expanded ? "Ver menos" : "Ver processo"}
             <ChevronDown
