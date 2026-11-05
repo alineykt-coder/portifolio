@@ -482,7 +482,7 @@ function Hero() {
         </h1>
 
         <p className="text-lg text-muted-foreground max-w-2xl leading-relaxed mb-8">
-          10+ anos criando experiências que equilibram negócio, métricas e
+          +15 anos criando experiências que equilibram negócio, métricas e
           usabilidade.
         </p>
 
